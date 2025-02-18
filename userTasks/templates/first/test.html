@@ -1,0 +1,20 @@
+{% extends 'first/base.html'%}
+{% load static %}
+
+{% block form %}
+<div class="table-wrapper2">
+
+
+<form method="post" >
+    {% csrf_token %}
+  {{form.name}}
+  {{form.age}}
+  {{form.text}}
+  <span>{{error}}</span>
+  <button type="submit" class="btn btn-primary">Вперед</button>
+</form>
+
+
+
+  </div>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends 'first/admin/baseAdmin.html'%}
+{% load static %}
+
+
+{% block form %}
+<h2 style="color: white">СПИСОК ДЕЛ</h2>
+    <h3 style="color: #ffffff; font-weight: 500; text-align: center; background: #4FC3A1">{{ dataUser.name }}</h3>
+
+    
+
+
+<table class="table">
+  <thead>
+  
+    <tr>
+      <th scope="col" >Дела</th>
+      <th scope="col" {% if weekDay == 0 %} style="background: indianred; color: white" {% endif %}>Понедельник</th>
+      <th scope="col" {% if weekDay == 1 %} style="background: indianred; color: white " {% endif %}>Вторник</th>
+      <th scope="col" {% if weekDay == 2 %} style="background: indianred; color: white" {% endif %}>Среда</th>
+        <th scope="col" {% if weekDay == 3 %} style="background: indianred; color: white" {% endif %}>Четверг</th>
+        <th scope="col" {% if weekDay == 4 %} style="background: indianred; color: white" {% endif %}>Пятница</th>
+        <th scope="col" {% if weekDay == 5 %} style="background: indianred; color: white" {% endif %}>Суббота</th>
+        <th scope="col" {% if weekDay == 6 %} style="background: indianred; color: white" {% endif %}>Воскресенье</th>
+        <th scope="col" >удаление задания</th>
+    </tr>
+  </thead>
+      
+  <tbody>
+      {% for list in dataTask %}
+    <tr>
+      <th scope="row" style="background: lightgoldenrodyellow">{{ list.task }}</th>
+    <td>
+        {% if list.mon == 0 %}
+            <div>
+            <a href="{% url 'adminStatus' day='mon' idTask=list.id %}"  ><button type="button" class="btn btn-danger " >:(</button></a>
+            </div>
+        {% elif list.mon == 1  %}
+           <div>
+           <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+           </div>
+        {% endif %}
+    </td>
+    <td>
+        {% if list.tue == 0 %}
+            <div>
+            <a href="{% url 'adminStatus' day='tue' idTask=list.id %}"  ><button type="button" class="btn btn-danger " >:(</button></a>
+            </div>
+        {% elif list.tue == 1  %}
+           <div>
+           <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+           </div>
+        {% endif %}
+    </td>
+    <td>
+        {% if list.wed == 0 %}
+            <div>
+            <a href="{% url 'adminStatus' day='wed' idTask=list.id %}"  ><button type="button" class="btn btn-danger " >:(</button></a>
+            </div>
+        {% elif list.wed == 1  %}
+           <div>
+           <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+           </div>
+        {% endif %}
+    </td>
+    <td>
+        {% if list.thu == 0 %}
+            <div>
+            <a href="{% url 'adminStatus' day='thu' idTask=list.id %}"  ><button type="button" class="btn btn-danger " >:(</button></a>
+            </div>
+        {% elif list.thu == 1  %}
+           <div>
+           <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+           </div>
+        {% endif %}
+    </td>
+    <td>
+        {% if list.fri == 0 %}
+            <div>
+            <a href="{% url 'adminStatus' day='fri' idTask=list.id %}"  ><button type="button" class="btn btn-danger " >:(</button></a>
+            </div>
+        {% elif list.fri == 1  %}
+           <div>
+           <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+           </div>
+        {% endif %}
+    </td>
+    <td>
+        {% if list.sat == 0 %}
+            <div>
+            <a href="{% url 'adminStatus' day='sat' idTask=list.id %}"  ><button type="button" class="btn btn-danger " >:(</button></a>
+            </div>
+        {% elif list.sat == 1  %}
+           <div>
+           <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+           </div>
+        {% endif %}
+    </td>
+    <td>
+        {% if list.sun == 0 %}
+            <div>
+            <a href="{% url 'adminStatus' day='sun' idTask=list.id %}"  ><button type="button" class="btn btn-danger " >:(</button></a>
+            </div>
+        {% elif list.sun == 1  %}
+           <div>
+           <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+           </div>
+        {% endif %}
+    </td>
+    <td style="background: lightgoldenrodyellow; text-align: center">
+      <a href="{% url 'adminDeleteTask' idTask=list.id %}" ><button type="button" class="btn btn-warning">Удалить</button></a>
+  </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+    
+    
+    <form action="{% url 'adminAddTask' %}" method="post">
+    {% csrf_token %}
+        <div class="mb-3">
+        <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px" autofocus placeholder="Новое задание" name="task" required>
+            <input type="number" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Звезд за задание" name="price" required>
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px">Добавить</button>
+    </form>
+    
+
+{% endblock %}

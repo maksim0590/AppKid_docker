@@ -1,0 +1,105 @@
+{% extends 'two/base_play.html'%}
+{% load static %}
+{% block form %}
+
+
+
+
+<div class="table-wrapper lessendiv ">
+{% if count == 15 %}
+    <p style="color: white; font-weight: 700; font-size: 80px ">Конец игры</p>
+    <p class="message"> Вы справились! </p>
+    <hr>
+{% else %}
+
+    {% if count == 1 %}
+    <img src="{% static '/first/img/bonus_zvezda.png' %}" style="width: 580px">
+    {% elif count == 2 %}
+    <img src="{% static '/first/img/bonus_zvezda2.png' %}" style="width: 580px">
+    {% elif count == 3 %}
+    <img src="{% static '/first/img/bonus_zvezda3.png' %}" style="width: 580px">
+    {% elif count == 4 %}
+    <img src="{% static '/first/img/bonus_zvezda4.png' %}" style="width: 580px">
+    {% elif count == 5 %}
+    <img src="{% static '/first/img/bonus_zvezda5.png' %}" style="width: 580px">
+    {% elif count == 6 %}
+    <img src="{% static '/first/img/bonus_zvezda6.png' %}" style="width: 580px">
+    {% elif count == 7 %}
+    <img src="{% static '/first/img/bonus_zvezda7.png' %}" style="width: 580px">
+    {% elif count == 8 %}
+    <img src="{% static '/first/img/bonus_zvezda8.png' %}" style="width: 580px">
+    {% elif count == 9 %}
+    <img src="{% static '/first/img/bonus_zvezda9.png' %}" style="width: 580px">
+    {% elif count == 10 %}
+    <img src="{% static '/first/img/bonus_zvezda10.png' %}" style="width: 580px">
+    {% elif count == 11 %}
+    <img src="{% static '/first/img/bonus_zvezda11.png' %}" style="width: 580px">
+    {% elif count == 12 %}
+    <img src="{% static '/first/img/bonus_zvezda12.png' %}" style="width: 580px">
+    {% elif count == 13 %}
+    <img src="{% static '/first/img/bonus_zvezda13.png' %}" style="width: 580px">
+    {% elif count == 14 %}
+    <img src="{% static '/first/img/bonus_zvezda14.png' %}" style="width: 580px">
+    {% elif count == 15 %}
+    <img src="{% static '/first/img/bonus_zvezda15.png' %}" style="width: 580px">
+    {% endif %}
+<h1 style="font-size: 100px">{{title}}</h1>
+    {%  if message_endPlay %}
+        {{ message_endPlay }}
+        {% endif %}
+    {{rezult}}
+    {% if count == -1  %}
+    <p style="font-size: 25px; color: darkred; font-weight: 500"> Ты часто ошибаешься</p>
+    {% endif %}
+    
+{% if message == True %}
+    <div class="corrected_message">
+        ВЕРНО
+    </div>
+    {% elif message_error == True %}
+    <div class="incorrected_message">
+        ОШИБКА! ПОДУМАЙ ЕЩЕ
+    </div>
+        {% else %}
+        <div>
+
+        </div>
+        {% endif %}
+    <div class="flex_primer">
+
+        {% if f == None %}
+             {% if a < b %}
+            <div>
+             <p class="style_primer">{{b}} {{operation}} {{a}}=</p>
+            </div>
+            {% else %}
+            <div>
+             <p class="style_primer">{{a}} {{operation}} {{b}}=</p>
+            </div>
+            {% endif %}
+
+        {% else %}
+        <div>
+           <p class="style_primer">{{a}} {{operation}} {{b}} {{operatorTwo}} {{f}}=</p>
+        </div>
+        {% endif %}
+
+
+        <div>
+            <form action="{% url 'bonusInputData' %}" method="post">
+                {% csrf_token %}
+                <input type="number" name="rezult" class="form-control" autofocus required>
+            </form>
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+
+
+
+
+{% endblock %}

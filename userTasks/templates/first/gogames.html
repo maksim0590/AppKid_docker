@@ -1,0 +1,29 @@
+{% extends 'first/base.html'%}
+{% load static %}
+
+
+{% block status %}
+<div class="zvezda">
+    <div>
+<img src="{% static '/first/img/zvezda.png' %}" style="width: 50px" >
+
+    </div>
+    <div>
+    <p class="cuonter">{{count}}</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block form %}
+<div class="opisanie_go">
+<b><p class="messagehi_gogames" style="color: crimson"> Твоя награда будет:  {{prize}}!!!  </p></b>
+    <hr>
+    <p class="messagehi_gogames">Держи свою вторую звёздочку!
+        <img src="{% static '/first/img/zvezda.png' %}" style="width: 200px">
+        <img src="{% static '/first/img/zvezda.png' %}" style="width: 150px" >
+    </p>
+
+    <a href="tasks" class="messagehi_gogames"><button type="button" class="btn btn-primary">Перейти к заданиям</button></a>
+</div>
+
+{% endblock %}

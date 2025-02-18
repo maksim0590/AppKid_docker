@@ -1,0 +1,14 @@
+{% extends 'two/base_play.html'%}
+{% load static %}
+{% block form %}
+
+
+<div class="lessendiv_play">
+    <p class="title_level">Выбор сложности</p>
+    <a href="{% url 'levelchoice' level=1 %}"><img src="{% static '/first/img/easy.png' %}" class="play_img1"></a>
+    <a href="{% url 'levelchoice' level=2 %}"><img src="{% static '/first/img/medium.png' %}" class="play_img2" ></a>
+    <a href="{% url 'levelchoice' level=3 %}"><img src="{% static '/first/img/hard.png' %}" class="play_img3"  ></a>
+</div>
+
+
+{% endblock %}

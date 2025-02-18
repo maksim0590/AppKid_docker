@@ -1,0 +1,45 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static '/first/css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="{% static '/first/js/script.js' %}" defer></script>
+    <meta charset="utf-8" />
+    <title>Деловые детки</title>
+</head>
+<body id="bg" style="background-image: url('{% static "/first/img/obl.png" %}')";>
+
+
+
+
+{#    <h1>Электронные часы</h1> #}
+{#    <div id="clock"></div>#}
+
+
+
+
+
+<div class="flex">
+    <div class="flex">
+        <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+    <p class="cuonter">{{user.count_zvezd}}  {{user.name}}</p>
+    </div>
+    <div class="flex">
+    <a href="play/level" style="color: darkred"><button type="button" class="btn btn-warning on-clock2" style="color: white">Заработать больше звез</button></a>
+        <a href="{% url  'index' %}" style="margin-left: 10px"><button type="button" class="btn btn-danger">Выход</button></a>
+    </div>
+</div>
+
+
+{% block form %}
+{% endblock %}
+
+</body>
+</html>

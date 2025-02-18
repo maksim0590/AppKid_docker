@@ -1,0 +1,48 @@
+{% extends 'first/admin/baseAdmin.html'%}
+{% load static %}
+
+
+{% block form %}
+<h2 style="color: white">Пользователи</h2>
+
+    
+
+
+    
+    
+<table class="table">
+  <thead>
+  
+    <tr>
+        <th scope="col" >ID</th>
+      <th scope="col" >Пользователь</th>
+        <th scope="col" >Набрано звёзд</th>
+        <th scope="col" >Приз</th>
+    </tr>
+  </thead>
+      
+  <tbody>
+  {% for userData in objectUser %}
+    <tr>
+        <td>{{ userData.id }}</td>
+      <th scope="row" style="background: lightgoldenrodyellow"><a href="{% url 'adminViewUser' idUser=userData.id %}">{{ userData.name }}</a> </th>
+        <td>{{ userData.count_zvezd }}</td>
+    <td>{{ userData.prize }}</td>
+     
+        
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+    
+    
+{##}
+{#    <form action="{% url 'addTask' %}" method="post">#}
+{#    {% csrf_token %}#}
+{#        <div class="mb-3">#}
+{#        <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px" autofocus placeholder="Новое задание" name="task">#}
+{#        <button type="submit" class="btn btn-primary" style="margin-top: 10px">Добавить</button>#}
+{#    </form>#}
+    
+
+{% endblock %}

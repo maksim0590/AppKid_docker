@@ -1,0 +1,27 @@
+{% extends 'first/base.html'%}
+{% load static %}
+
+
+{% block form %}
+
+<div class="opisanie">
+<p class="messagehi"> Привет {{name}}!!!</p>
+  <p class="priz1"> Очень рад с тобой познакомиться <br> Получай свою первую звёздочку  </p>
+  <img src="{% static '/first/img/zvezda.png' %}" style="width: 200px" >
+</div>
+
+<div class="form">
+<form method="post" action="gogames">
+    {% csrf_token %}
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label" style="color: #003363; font-size: 20px">
+      <b>Какой приз ты бы хотела получить?</b>
+    </label>
+    <input required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="prize" >
+    <div id="emailHelp" class="form-text" style="color: aliceblue"> </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Вперед</button>
+</form>
+</div>
+
+{% endblock %}
