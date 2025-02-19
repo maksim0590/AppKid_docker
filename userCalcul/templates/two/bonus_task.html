@@ -9,6 +9,7 @@
 {% if count == 15 %}
     <p style="color: white; font-weight: 700; font-size: 80px ">Конец игры</p>
     <p class="message"> Вы справились! </p>
+     <a href="{% url  'stillPlay' %}" style="margin-left: 10px"><button type="button" class="btn btn-danger">Решать еще примеры</button></a>
     <hr>
 {% else %}
 

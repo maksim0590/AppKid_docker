@@ -8,4 +8,5 @@ urlpatterns = [
     path('exitplay', views.exitplay, name='exitplay'),
     path('level', views.level, name='level'),
     path('levelchoice/<int:level>/', views.levelchoice, name='levelchoice'),
+    path('stillPlay', views.stillPlay, name='stillPlay'),
 ]

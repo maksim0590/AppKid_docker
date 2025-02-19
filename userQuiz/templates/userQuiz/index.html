@@ -1,0 +1,10 @@
+{% extends 'userQuiz/baseUserQuiz.html'%}
+{% load static %}
+{% block form %}
+
+    <h2 style="color: white">Викторина</h2>
+    <h3>описание что это такое </h3>
+    <a href="{% url 'showQuestion' %}" ><button type="button" class="btn btn-warning">Приступить</button></a>
+
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'first/admin/baseAdmin.html' %}
+{% load static %}
+
+
+{% block form %}
+   {% if errorAuth %}
+       <div style="height: 80px; background: #c53d3d; color: white; text-align: center; font-size: 30px">
+       {{ errorAuth }}
+       </div>
+    {% endif %}
+<div class="form">
+<form method="post" action="{% url 'adminMain' %}">
+    {% csrf_token %}
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label" style="color: #003363; font-size: 20px">
+      <b>Администратор</b>
+    </label>
+    <input required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="admin" autofocus>
+    <div id="emailHelp" class="form-text" style="color: aliceblue"> </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Авторизация</button>
+</form>
+</div>
+
+{% endblock %}

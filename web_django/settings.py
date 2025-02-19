@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'userTasks',
     'userCalcul',
+    'userQuiz',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'web_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'userTasks/templates', 'userCalcul/templates' ],
+        'DIRS': [BASE_DIR / 'userTasks/templates', 'userCalcul/templates', 'userQuiz/templates', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

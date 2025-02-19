@@ -1,6 +1,6 @@
 services:
-  web:
-    build: ./web
+  web:                                               # Контейнер с джанго
+    build: ./web                                     # Расположение
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/web_django

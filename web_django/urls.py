@@ -21,5 +21,6 @@ from userTasks import views
 urlpatterns = [
     path('', include('userTasks.urls')),
     path('play/', include('userCalcul.urls')),
+    path('quiz/', include('userQuiz.urls')),
 
 ]

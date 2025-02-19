@@ -314,3 +314,13 @@ h2{
     align-items: center;
     justify-content: center;
 }
+
+.size_div_chhoice_play {
+    text-align: center;
+    width: 800px;
+    margin-top: 5%;
+    height: 20vh;
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto;
+}

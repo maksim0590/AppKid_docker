@@ -1,0 +1,27 @@
+{% extends 'first/admin/baseAdmin.html' %}
+{% load static %}
+
+
+{% block form %}
+    <h2>Модули</h2>
+    <table class="table">
+  <thead>
+  
+    <tr>
+        <th scope="col" >Модуль</th>
+      <th scope="col" >Описание</th>
+    </tr>
+  </thead>
+      
+  <tbody>
+    <tr>
+        <td style=" background: #d1d1d1; color: white; font-size: 18px; font-weight: 500;" ><a href="{% url 'adminTasks' %}" style="color: #c53d3d" >Выполнение дел</a></td>
+        <td>Описание модуля</td>
+    </tr>
+    
+    <tr>
+        <td style=" background: #afafaf; color: white; font-size: 18px; font-weight: 500;" ><a href="{% url 'adminShowQuestions' %}" style="color: #c53d3d" >Викторина</a></td>
+        <td>Описание модуля</td>
+    </tr>
+  
+{% endblock %}

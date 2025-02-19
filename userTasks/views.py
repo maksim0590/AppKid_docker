@@ -1,5 +1,8 @@
 
 import time
+from xml.dom import HierarchyRequestErr
+
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import datetime
 from .models import Calcul, User, Tasks
@@ -71,6 +74,25 @@ def delete(request):
 
 
 # AdminViews
+
+def welcomeAdmin(request):
+    errorAuth = request.session.get('error_auth')
+    if errorAuth:
+        del request.session['error_auth']
+    return render(request, 'first/admin/welcomeAdmin.html', context={'errorAuth':errorAuth})
+def adminMain(request):
+    inputUser = request.POST.get('admin')
+    objectUser = User.objects.filter(name=inputUser).exists()
+    if objectUser:
+        return redirect('adminModule')
+    else:
+        request.session['error_auth'] = 'Ошибка авторизации'
+        return redirect('welcomeAdmin')
+def adminModule(request):
+    return render(request, 'first/admin/adminModule.html')
+
+
+
 def adminTasks(request):
     objectUser = User.objects.all()
     return render(request, 'first/admin/adminTask.html', context={'objectUser':objectUser})
@@ -106,7 +128,8 @@ def adminStatus(request, day, idTask):
     task.save()
     return redirect('adminViewUser', idUser=idUser)
 
-
+def choicePlay(request):
+    return render(request, 'first/choicePlay.html')
 
 
 

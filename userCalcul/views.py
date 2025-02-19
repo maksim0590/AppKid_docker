@@ -138,3 +138,13 @@ def exitplay(request):
     objectCalcul.message_error = False
     objectCalcul.save()
     return redirect('task')
+
+def stillPlay(request):
+    id = request.session.get('id_calcul')
+    objectCalcul = Calcul.objects.get(id=id)
+    objectCalcul.count_zvezd = 0
+    objectCalcul.message = False
+    objectCalcul.message_warning = False
+    objectCalcul.message_error = False
+    objectCalcul.save()
+    return redirect('level')

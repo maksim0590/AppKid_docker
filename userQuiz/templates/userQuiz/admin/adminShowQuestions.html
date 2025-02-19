@@ -1,0 +1,63 @@
+{% extends 'userQuiz/baseUserQuiz.html'%}
+{% load static %}
+{% block form %}
+
+<h2 style="color: white">Викторина</h2>
+
+<table class="table">
+  <thead>
+
+    <tr>
+      <th scope="col" >Вопрос</th>
+      <th scope="col" {% if weekDay == 0 %} style="background: indianred; color: white" {% endif %}>Ответ1</th>
+      <th scope="col" {% if weekDay == 1 %} style="background: indianred; color: white " {% endif %}>Ответ2</th>
+      <th scope="col" {% if weekDay == 2 %} style="background: indianred; color: white" {% endif %}>Ответ3</th>
+        <th scope="col" {% if weekDay == 3 %} style="background: indianred; color: white" {% endif %}>Ответ4</th>
+        <th scope="col" {% if weekDay == 4 %} style="background: indianred; color: white" {% endif %}>Статус</th>
+        <th scope="col" >Удалить вопрос</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      {% for list in objectQuiz %}
+    <tr>
+      <th scope="row" style="background: lightgoldenrodyellow">{{ list.question }}</th>
+    <td>
+        {{ list.answer1 }}
+    </td>
+     <td>
+        {{ list.answer2 }}
+    </td>
+     <td>
+        {{ list.answer3 }}
+    </td>
+     <td>
+        {{ list.answer4 }}
+    </td>
+     <td>
+        {{ list.status }}
+    </td>
+     <td>
+        <a href="{% url 'deleteQuestion' idQuest=list.id %}" ><button type="button" class="btn btn-warning">Удалить</button></a>
+    </td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+    <form action="{% url 'addQuestion' %}" method="post">
+    {% csrf_token %}
+        <div class="mb-3">
+            <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px" autofocus placeholder="Вопрос" name="question" required>
+            <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№1" name="answer1" required>
+            <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№2" name="answer2" required>
+            <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№3" name="answer3" required>
+            <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№4" name="answer4" required>
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px">Добавить вопрос</button>
+    </form>
+
+
+
+{% endblock %}
