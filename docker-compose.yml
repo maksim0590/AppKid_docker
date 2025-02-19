@@ -1,21 +1,27 @@
 services:
-  web:                                               # Контейнер с джанго
-    build: ./web                                     # Расположение
-    command: python manage.py runserver 0.0.0.0:8000
+  web:
+    build: ./web
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/web_django
     ports:
       - '8000:8000'
+    restart: always
     depends_on:
-      - db
+      db:            
+        condition: service_healthy      #Запуск контейнера после проверки работоспособности
   db:
     image: mysql:latest
-    restart: always
+    restart: always                         # Как только служба Docker будет запущена будут запускаться контейнеры
     environment:
      MYSQL_ROOT_PASSWORD: Dd98125637
      MYSQL_DATABASE: python
      MYSQL_USER: useruser
      MYSQL_PASSWORD: user12345678
+    healthcheck:                                                       #Проверка работоспособности
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            timeout: 10s
+            retries: 10
   phpmyadmin:
    image: phpmyadmin/phpmyadmin:latest
    restart: always
