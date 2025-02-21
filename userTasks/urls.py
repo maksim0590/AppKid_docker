@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.http import HttpResponse
+from django.shortcuts import render
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -23,5 +25,17 @@ urlpatterns = [
     path('adminDeleteTask/<int:idTask>/', views.adminDeleteTask, name='adminDeleteTask'),
     path('adminAddTask', views.adminAddTask, name='adminAddTask'),
     path('adminStatus/<str:day>/<int:idTask>/', views.adminStatus, name='adminStatus'),
+    
 
+    
 ]
+
+a = 0
+try: 
+    if a == 5:
+        urlpatterns = [
+            path('test', views.test, name='test'),
+        ]
+except:
+    print('no')
+    

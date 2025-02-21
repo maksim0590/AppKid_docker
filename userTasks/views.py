@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 import datetime
 from .models import Calcul, User, Tasks
 from .services import sendMessage
+from  django.template.response import TemplateResponse
 
 
 def index(request):
@@ -133,5 +134,9 @@ def choicePlay(request):
 
 
 
+def test(request):
+    return TemplateResponse(request, 'indexTest.html')
+    # return render(request, 'indexTest.html')
 
-
+def error(request):
+    return HttpResponse('status=500')
