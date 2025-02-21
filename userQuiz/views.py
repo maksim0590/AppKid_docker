@@ -40,7 +40,10 @@ def userAddQustion(request, answer, id):
 #admin
 def adminShowQuestions(request):
     objectQuiz = Quiz.objects.all()
-    return render(request, 'userQuiz/admin/adminShowQuestions.html', context={'objectQuiz':objectQuiz})
+    error_message = request.session.get('error_message')
+    if error_message:
+        del request.session['error_message']
+    return render(request, 'userQuiz/admin/adminShowQuestions.html', context={'objectQuiz':objectQuiz,  'error_message':error_message})
 
 def deleteQuestion(request, idQuest):
     objectQuiz = Quiz.objects.get(id=idQuest)
@@ -49,32 +52,36 @@ def deleteQuestion(request, idQuest):
 
 def addQuestion(request):
     inputQuest = request.POST.get('question')
-    checkBoxAnswer1 =request.POST.get('answer1chekbox')
-    checkBoxAnswer2 = request.POST.get('answer2chekbox')
-    checkBoxAnswer3 = request.POST.get('answer3chekbox')
-    checkBoxAnswer4 = request.POST.get('answer4chekbox')
-
+    answerCorrect  = request.POST.getlist('chekbox[]')
     inputAnswer1 = request.POST.get('answer1')
     inputAnswer2 = request.POST.get('answer2')
     inputAnswer3 = request.POST.get('answer3')
     inputAnswer4 = request.POST.get('answer4')
-    objectQuiz = Quiz.objects.create(question=inputQuest,
+    if not answerCorrect:
+        request.session['error_message'] = 'Нужно отметить правильный ответ'
+        return redirect('adminShowQuestions')
+    else:
+        objectQuiz = Quiz.objects.create(question=inputQuest,
                                      answer1=inputAnswer1,
                                      answer2=inputAnswer2,
                                      answer3=inputAnswer3,
                                      answer4=inputAnswer4,
                                      )
-    if checkBoxAnswer1 == 'on':
-        objectQuiz.answerCorrect = inputAnswer1
+        correct = ''.join(answerCorrect)
+        if correct == 'answer1':
+            objectQuiz.answerCorrect = inputAnswer1
+        elif correct  == 'answer2':
+            objectQuiz.answerCorrect = inputAnswer2
+        elif correct == 'answer3':
+            objectQuiz.answerCorrect = inputAnswer3
+        elif correct  == 'answer4':
+            objectQuiz.answerCorrect = inputAnswer4
 
-    elif  checkBoxAnswer2 == 'on':
-        objectQuiz.answerCorrect = inputAnswer2
-
-    elif checkBoxAnswer3 == 'on':
-        objectQuiz.answerCorrect = inputAnswer3
-
-    elif  checkBoxAnswer4 == 'on':
-        objectQuiz.answerCorrect = inputAnswer4
-
-    objectQuiz.save()
-    return redirect('adminShowQuestions')
+        objectQuiz.save()
+        return redirect('adminShowQuestions') 
+        
+    
+    
+        
+    
+    

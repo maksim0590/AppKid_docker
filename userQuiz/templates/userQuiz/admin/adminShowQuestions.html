@@ -21,10 +21,8 @@
   <tbody>
       {% for list in objectQuiz %}
     <tr>
-
+ 
       <th scope="row" style="background: lightgoldenrodyellow">{{ list.question }}</th>
-
-
 
     <td {% if list.answer1 == list.answerCorrect %} style="background: #4FC3A1" {% endif %}>
         {{ list.answer1 }}
@@ -44,9 +42,15 @@
 
 
 
-     <td>
-        {{ list.status }}
-    </td>
+     
+      {% if list.status == 0 %}
+        <td style="background: darkred; color: white;">Ошибка</td>
+        {% elif list.status == 1  %}
+        <td style="background: rgb(0, 95, 29); color: white;">Верно</td>
+        {%  else %}
+        <td  style="background: rgb(0, 44, 139); color: white;">Нет ответа</td>
+        {% endif %}
+    
 
      <td>
         <a href="{% url 'deleteQuestion' idQuest=list.id %}" ><button type="button" class="btn btn-warning">Удалить</button></a>
@@ -56,7 +60,11 @@
   {% endfor %}
   </tbody>
 </table>
+{% if objectQuiz.count < 15 %}
 
+   {% if error_message %}
+   {{  error_message }}
+   {% endif %}
 
     <form action="{% url 'addQuestion' %}" method="post">
     {% csrf_token %}
@@ -65,28 +73,32 @@
 
                <div class="flex_viktorina">
                    <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№1" name="answer1" required>
-                   <input type="checkbox" name="answer1chekbox" style="margin-left: 20px">
+                   <input type="checkbox" name="chekbox[]" style="margin-left: 20px" value="answer1">
                </div>
 
                <div class="flex_viktorina">
                    <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№2" name="answer2" required>
-                   <input type="checkbox" name="answer2chekbox" style="margin-left: 20px">
+                   <input type="checkbox" name="chekbox[]" style="margin-left: 20px" value="answer2">
                </div>
 
             <div class="flex_viktorina">
                    <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№3" name="answer3" required>
-                   <input type="checkbox" name="answer3chekbox" style="margin-left: 20px">
+                   <input type="checkbox" name="chekbox[]" style="margin-left: 20px" value="answer3">
                </div>
 
             <div class="flex_viktorina">
                    <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№4" name="answer4" required>
-                   <input type="checkbox" name="answer4chekbox" style="margin-left: 20px">
+                   <input type="checkbox" name="chekbox[]" style="margin-left: 20px" value="answer4">
                </div>
 
 
         <button type="submit" class="btn btn-primary" style="margin-top: 10px; margin-left: 20px">Добавить вопрос</button>
     </form>
-
-
+   
+    {% else %}
+     <div>
+      <h3 style="text-align: center; color: darkred;">  В викторину можно добавить не более 15 вопросов</h3>
+     </div>
+     {% endif %}
 
 {% endblock %}

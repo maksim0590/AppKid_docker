@@ -326,10 +326,29 @@ h2{
 }
 
 
-
+.div_viktor {
+    display: flex;
+    margin:0 auto;
+   
+    width: 300px;
+    text-align: center;
+    justify-content: center;
+}
 
 
 .flex_viktorina {
     display: flex;
     margin-left: 20px;
+}
+
+.question{
+    text-align: center;
+    font-size: 30px;
+    color: #1c0050;
+}
+
+.flex_viktor {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
 }

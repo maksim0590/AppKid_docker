@@ -2,25 +2,29 @@
 {% load static %}
 {% block form %}
 
-    <h2 style="color: white">Викторина</h2>
-{{ r }}
+    <h2 style="color: white; background: darkcyan;">Викторина</h2>
+
 {% for data in page_obj %}
-    <div class="quest_div">
-    <h3>{{ data.question }} </h3>
+    <div>
+    <h3 class="question">{{ data.question }} </h3>
 
-    <div>
-        <a href="{% url 'userAddQustion' answer=data.answer1 id=data.id %}">{{ data.answer1 }}</a>
-    </div>
-    <div>
-    <a href="{% url 'userAddQustion' answer=data.answer2 id=data.id %}">{{ data.answer2 }}</a>
-    </div>
-    <div>
-    <a href="{% url 'userAddQustion' answer=data.answer3 id=data.id %}">{{ data.answer3 }}</a>
-    </div>
-    <div>
-    <a href="{% url 'userAddQustion' answer=data.answer4 id=data.id %}">{{ data.answer4 }}</a>
-    </div>
+    <div class="div_viktor">
+        
+        <div  class="flex_viktor">
+            <div class="d-grid gap-2">
+                <a href="{% url 'userAddQustion' answer=data.answer1 id=data.id %}"><button class="btn btn-primary" type="button">{{ data.answer1 }}</button></a>
+                <a href="{% url 'userAddQustion' answer=data.answer2 id=data.id %}"><button class="btn btn-primary" type="button">{{ data.answer2 }}</button></a>
+            </div>
+        </div>
 
+        <div  class="flex_viktor">
+                <div class="d-grid gap-2">
+                    <a href="{% url 'userAddQustion' answer=data.answer3 id=data.id %}"><button class="btn btn-primary" type="button">{{ data.answer3 }}</button></a>
+                    <a href="{% url 'userAddQustion' answer=data.answer4 id=data.id %}"><button class="btn btn-primary" type="button">{{ data.answer4 }}</button></a>
+                </div>
+        </div>
+    
+    </div>
 
     </div>
     {% endfor %}
