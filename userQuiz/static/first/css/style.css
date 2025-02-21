@@ -1,0 +1,15 @@
+
+.flex {
+     position: relative;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.head_play {
+    margin: 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+}

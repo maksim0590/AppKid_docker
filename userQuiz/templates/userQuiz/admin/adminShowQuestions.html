@@ -21,22 +21,33 @@
   <tbody>
       {% for list in objectQuiz %}
     <tr>
+
       <th scope="row" style="background: lightgoldenrodyellow">{{ list.question }}</th>
-    <td>
+
+
+
+    <td {% if list.answer1 == list.answerCorrect %} style="background: #4FC3A1" {% endif %}>
         {{ list.answer1 }}
     </td>
-     <td>
+
+     <td {% if list.answer2 == list.answerCorrect %} style="background: #4FC3A1" {% endif %}>
         {{ list.answer2 }}
     </td>
-     <td>
+
+     <td {% if list.answer3 == list.answerCorrect %} style="background: #4FC3A1" {% endif %}>
         {{ list.answer3 }}
     </td>
-     <td>
+
+     <td {% if list.answer4 == list.answerCorrect %} style="background: #4FC3A1" {% endif %}>
         {{ list.answer4 }}
     </td>
+
+
+
      <td>
         {{ list.status }}
     </td>
+
      <td>
         <a href="{% url 'deleteQuestion' idQuest=list.id %}" ><button type="button" class="btn btn-warning">Удалить</button></a>
     </td>
@@ -50,12 +61,30 @@
     <form action="{% url 'addQuestion' %}" method="post">
     {% csrf_token %}
         <div class="mb-3">
-            <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px" autofocus placeholder="Вопрос" name="question" required>
-            <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№1" name="answer1" required>
-            <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№2" name="answer2" required>
-            <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№3" name="answer3" required>
-            <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№4" name="answer4" required>
-        <button type="submit" class="btn btn-primary" style="margin-top: 10px">Добавить вопрос</button>
+            <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px; margin-left: 20px" autofocus placeholder="Вопрос" name="question" required>
+
+               <div class="flex_viktorina">
+                   <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№1" name="answer1" required>
+                   <input type="checkbox" name="answer1chekbox" style="margin-left: 20px">
+               </div>
+
+               <div class="flex_viktorina">
+                   <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№2" name="answer2" required>
+                   <input type="checkbox" name="answer2chekbox" style="margin-left: 20px">
+               </div>
+
+            <div class="flex_viktorina">
+                   <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№3" name="answer3" required>
+                   <input type="checkbox" name="answer3chekbox" style="margin-left: 20px">
+               </div>
+
+            <div class="flex_viktorina">
+                   <input type="text" class="form-control"aria-describedby="emailHelp" style="width: 400px;  margin-top: 10px" autofocus placeholder="Вариант ответа№4" name="answer4" required>
+                   <input type="checkbox" name="answer4chekbox" style="margin-left: 20px">
+               </div>
+
+
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px; margin-left: 20px">Добавить вопрос</button>
     </form>
 
 

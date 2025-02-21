@@ -3,9 +3,26 @@
 {% block form %}
 
     <h2 style="color: white">Викторина</h2>
-    <h3>Вопрос </h3>
+{{ r }}
+{% for data in page_obj %}
+    <div class="quest_div">
+    <h3>{{ data.question }} </h3>
 
-{{ objectmax }}
-{{ objectmin }}
+    <div>
+        <a href="{% url 'userAddQustion' answer=data.answer1 id=data.id %}">{{ data.answer1 }}</a>
+    </div>
+    <div>
+    <a href="{% url 'userAddQustion' answer=data.answer2 id=data.id %}">{{ data.answer2 }}</a>
+    </div>
+    <div>
+    <a href="{% url 'userAddQustion' answer=data.answer3 id=data.id %}">{{ data.answer3 }}</a>
+    </div>
+    <div>
+    <a href="{% url 'userAddQustion' answer=data.answer4 id=data.id %}">{{ data.answer4 }}</a>
+    </div>
+
+
+    </div>
+    {% endfor %}
 
 {% endblock %}

@@ -130,4 +130,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_DIRS = [BASE_DIR / 'userTasks/static', 'userCalcul/static']
+STATIC_DIRS = [BASE_DIR / 'userTasks/static', 'userCalcul/static', 'userQuiz/static']

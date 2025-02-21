@@ -3,7 +3,8 @@ from . import views
 
 urlpatterns = [
     path('', views.indexQuiz, name='index_quiz'),
-    path('showQuestion', views.showQuestion, name='showQuestion'),
+    path('showQuestion/<int:page>/', views.showQuestion, name='showQuestion'),
+    path('userAddQustion/<str:answer>/<int:id>/', views.userAddQustion, name='userAddQustion'),
 
 
     path('adminShowQuestions', views.adminShowQuestions, name='adminShowQuestions'),
