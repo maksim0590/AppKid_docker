@@ -25,6 +25,8 @@
   
     <tr>
       <th scope="col" >Дела</th>
+      <th scope="col" >Цена</th>
+    
       <th scope="col" {% if weekDay == 0 %} style="background: indianred; color: white" {% endif %}>Понедельник</th>
       <th scope="col" {% if weekDay == 1 %} style="background: indianred; color: white " {% endif %}>Вторник</th>
       <th scope="col" {% if weekDay == 2 %} style="background: indianred; color: white" {% endif %}>Среда</th>
@@ -40,6 +42,9 @@
       {% for list in data %}
     <tr>
       <th scope="row" style="background: lightgoldenrodyellow">{{ list.task }}</th>
+    <th scope="row" style="background: lightgoldenrodyellow">{{ list.price }}
+        <img src="{% static '/first/img/zvezda.png' %}" style="width: 20px; height: 20px" >
+    </th>
     <td {% if weekDay == 0 %} style="background: #bbddfa" {% endif %}>
         {% if list.mon == 0 and weekDay == 0 %}
           <a href="{% url 'status' day='mon' idtask=list.id %}"  ><button type="button" class="btn btn-danger on-clock" >:(</button></a>
