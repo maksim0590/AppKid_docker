@@ -4,7 +4,38 @@
 
     <h2 style="color: white; background: darkcyan;">Викторина</h2>
 
-{% for data in page_obj %}
+    {{ objectQuestions.count }}
+{% if messageEndPlay %}
+    <div class="div_rezult" >
+        <h2 style="color: gold">Конец игры</h2>
+        <p style="color: #c53d3d">Количество неправильных ответов: {{ incorrect }} </p>
+    </div>
+    {% if incorrect == 0 %}
+        <div class="div_rezult">
+        <p style="color: gold"> Ты получаешь 5 звезд</p>
+         <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+         <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+         <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+         <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+         <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+        </div>
+
+     {% elif incorrect == 1 %}
+        <div class="div_rezult">
+        <p style="color: gold"> Ты получаешь 3 звезды</p>
+         <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+         <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+         <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+        </div>
+        {% elif incorrect == 2 %}
+        <div class="div_rezult">
+        <p style="color: gold"> Ты получаешь 1 звезду</p>
+         <img src="{% static '/first/img/zvezda.png' %}" style="width: 50px; height: 47px" >
+        </div>
+    {% endif %}
+
+    {% else %}
+    {% for data in page_obj %}
     <div>
     <h3 class="question">{{ data.question }} </h3>
 
@@ -27,6 +58,9 @@
     </div>
 
     </div>
+
     {% endfor %}
+{% endif %}
+
 
 {% endblock %}

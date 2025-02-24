@@ -10,5 +10,6 @@ urlpatterns = [
     path('adminShowQuestions', views.adminShowQuestions, name='adminShowQuestions'),
     path('deleteQuestion/<int:idQuest>/', views.deleteQuestion, name='deleteQuestion'),
     path('addQuestion', views.addQuestion, name='addQuestion'),
+    path('deleteRezultQuest', views.deleteRezultQuest, name='deleteRezultQuest'),
 
 ]

@@ -24,25 +24,22 @@
  
       <th scope="row" style="background: lightgoldenrodyellow">{{ list.question }}</th>
 
-    <td {% if list.answer1 == list.answerCorrect %} style="background: #4FC3A1" {% endif %}>
+    <td {% if list.answer1 == list.answerCorrect %} style="background: #4FC3A1" {% endif %} {% if list.answer1 == list.answerUser %} style="background: gold" {% endif %}>
         {{ list.answer1 }}
     </td>
 
-     <td {% if list.answer2 == list.answerCorrect %} style="background: #4FC3A1" {% endif %}>
+     <td {% if list.answer2 == list.answerCorrect %} style="background: #4FC3A1" {% endif %}  {% if list.answer2 == list.answerUser %} style="background: gold" {% endif %} >
         {{ list.answer2 }}
     </td>
 
-     <td {% if list.answer3 == list.answerCorrect %} style="background: #4FC3A1" {% endif %}>
+     <td {% if list.answer3 == list.answerCorrect %} style="background: #4FC3A1" {% endif %}  {% if list.answer3 == list.answerUser %} style="background: gold" {% endif %} >
         {{ list.answer3 }}
     </td>
 
-     <td {% if list.answer4 == list.answerCorrect %} style="background: #4FC3A1" {% endif %}>
+     <td {% if list.answer4 == list.answerCorrect %} style="background: #4FC3A1" {% endif %} {% if list.answer4 == list.answerUser %} style="background: gold" {% endif %}>
         {{ list.answer4 }}
     </td>
 
-
-
-     
       {% if list.status == 0 %}
         <td style="background: darkred; color: white;">Ошибка</td>
         {% elif list.status == 1  %}
@@ -99,6 +96,10 @@
      <div>
       <h3 style="text-align: center; color: darkred;">  В викторину можно добавить не более 15 вопросов</h3>
      </div>
+    <div>
+    <a href="{% url  'deleteRezultQuest' %}" style="margin-bottom: 50px"><button type="button" class="btn btn-danger">Очистить результат</button></a>
+    </div>
+
      {% endif %}
 
 {% endblock %}

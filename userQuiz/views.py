@@ -9,6 +9,7 @@ from .models import Quiz
 import random
 from django.core.paginator import Paginator
 from django.shortcuts import render
+from django.db.models import F
 
 def indexQuiz(request):
     return render(request, 'userQuiz/index.html')
@@ -17,9 +18,32 @@ def showQuestion(request, page ):
     paginator = Paginator(objectQuestions, 1)
     page_obj = paginator.get_page(page)
     request.session['page'] = page
+    if page > 15:
+        messageEndPlay = 'Конец игры'
+        correct= objectQuestions.filter(status=1).count()
+        incorrect = objectQuestions.filter(status=0).count()
+        if incorrect == 0:
+            id = request.session.get('id_user')
+            user = User.objects.get(id=id)
+            user.count_zvezd +=5
+            user.save()
+        elif incorrect == 1:
+            id = request.session.get('id_user')
+            user = User.objects.get(id=id)
+            user.count_zvezd += 3
+            user.save()
+        elif incorrect == 2:
+            id = request.session.get('id_user')
+            user = User.objects.get(id=id)
+            user.count_zvezd += 1
+            user.save()
+        return render(request, 'userQuiz/showQuestion.html',
+                      context={'page_obj': page_obj, 'messageEndPlay': messageEndPlay, 'correct':correct, 'incorrect':incorrect})
+
     return render(request, 'userQuiz/showQuestion.html', context={'page_obj':page_obj})
 def userAddQustion(request, answer, id):
     objectQuestions = Quiz.objects.get(id=id)
+    objectQuestions.answerUser = answer
     if objectQuestions.answerCorrect == answer:
         objectQuestions.status = 1
         objectQuestions.message = 'Верно'
@@ -32,8 +56,6 @@ def userAddQustion(request, answer, id):
         objectQuestions.save()
         page = request.session.get('page') + 1
         return redirect('showQuestion', page)
-
-    # return redirect('showQuestion', )
 
 
 
@@ -80,8 +102,6 @@ def addQuestion(request):
         objectQuiz.save()
         return redirect('adminShowQuestions') 
         
-    
-    
-        
-    
-    
+def deleteRezultQuest(request):
+    Quiz.objects.all().update(status=None, answerUser=None)
+    return redirect('adminShowQuestions')

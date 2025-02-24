@@ -334,7 +334,13 @@ h2{
     text-align: center;
     justify-content: center;
 }
+.div_rezult {
+    font-size: 20px;
+     margin:0 auto;
+    width: 300px;
+    text-align: center;
 
+}
 
 .flex_viktorina {
     display: flex;
@@ -352,3 +358,4 @@ h2{
     justify-content: center;
     margin: 30px;
 }
+

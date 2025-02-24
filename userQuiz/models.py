@@ -8,6 +8,7 @@ class Quiz(models.Model):
     answer2 = models.CharField('Ответ2', max_length=250, null=True, blank=True)
     answer3= models.CharField('Ответ3', max_length=250, null=True, blank=True)
     answer4 = models.CharField('Ответ4', max_length=250, null=True, blank=True)
+    answerUser = models.CharField('Ответ пользователя', max_length=250, null=True, blank=True)
     status = models.IntegerField('Статус ответа', null=True, blank=True)
     message = models.CharField('Сообщение', max_length=250, null=True, blank=True)
     def __str__(self):
